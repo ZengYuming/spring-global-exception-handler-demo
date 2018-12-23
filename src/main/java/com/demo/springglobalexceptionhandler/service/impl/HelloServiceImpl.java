@@ -1,5 +1,6 @@
 package com.demo.springglobalexceptionhandler.service.impl;
 
+import com.demo.springglobalexceptionhandler.exception.BalanceNotEnoughException;
 import com.demo.springglobalexceptionhandler.exception.UserNotFoundException;
 import com.demo.springglobalexceptionhandler.service.HelloService;
 import com.demo.springglobalexceptionhandler.vo.response.hello.HelloRes;
@@ -13,7 +14,7 @@ public class HelloServiceImpl implements HelloService {
         if(exceptionType==0){
             throw new UserNotFoundException();
         }else if(exceptionType==1){
-            throw  new NullPointerException();
+            throw  new BalanceNotEnoughException();
         }else if(exceptionType==2){
             throw new OutOfMemoryError();
         }

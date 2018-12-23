@@ -2,17 +2,15 @@ package com.demo.springglobalexceptionhandler.exception;
 
 import com.demo.springglobalexceptionhandler.consts.ApiStatus;
 
-import javax.validation.ConstraintViolationException;
-
-public class UserNotFoundException extends IGlobalException {
+public class BalanceNotEnoughException extends IGlobalException {
     private static final long serialVersionUID = -2049125462837889623L;
 
     @Override
     public ApiStatus getApiStatus() {
-        return ApiStatus.UserNotFoundException;
+        return ApiStatus.BalanceNotEnoughException;
     }
 
-    public UserNotFoundException() {
-        super(ApiStatus.UserNotFoundException);
+    public BalanceNotEnoughException() {
+        super(ApiStatus.BalanceNotEnoughException);
     }
 }

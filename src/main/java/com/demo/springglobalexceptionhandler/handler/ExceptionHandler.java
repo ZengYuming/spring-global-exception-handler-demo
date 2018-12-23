@@ -5,6 +5,8 @@ package com.demo.springglobalexceptionhandler.handler;
  * Created by 曾芋茗 on 2/27/2018.
  */
 
+import com.demo.springglobalexceptionhandler.exception.IGlobalException;
+import com.demo.springglobalexceptionhandler.exception.UserNotFoundException;
 import com.demo.springglobalexceptionhandler.vo.response.ResponseBean;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,7 +27,7 @@ public class ExceptionHandler {
     @ResponseBody
     @org.springframework.web.bind.annotation.ExceptionHandler(value = BindException.class)
     public ResponseBean handle(BindException e) {
-        return ResponseBean.createError(e.getFieldError().getDefaultMessage());
+        return ResponseBean.toResponseEntity(e.getFieldError().getDefaultMessage());
     }
 
     /**
@@ -37,6 +39,18 @@ public class ExceptionHandler {
     @ResponseBody
     @org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
     public ResponseBean handle(Exception e) {
-        return ResponseBean.createError(e.getMessage());
+        return ResponseBean.toResponseEntity(e.getMessage());
+    }
+
+    /**
+     * 全局参数验证
+     *
+     * @param e
+     * @return
+     */
+    @ResponseBody
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = IGlobalException.class)
+    public ResponseBean handle(IGlobalException e) {
+        return ResponseBean.toResponseEntity(e.getApiStatus());
     }
 }
